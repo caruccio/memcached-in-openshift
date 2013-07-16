@@ -12,14 +12,14 @@ Create an account at http://getupcloud.com/
 Create your application
 
 ```
-rhc app create -a memcached -t <type>
+rhc app create -a myapp -t <type>
 ```
 
 Add this upstream memcached repo
 
 ```
-cd memcached
-git remote add upstream -m master git://github.com/caruccio/openshift-memcached-embedded.git
+cd myapp/
+git remote add memcached -m master git://github.com/caruccio/openshift-memcached-embedded.git
 git pull -s recursive -X theirs upstream master
 ```
 
@@ -35,7 +35,7 @@ To connect to local gear's memcached use env var ```$OPENSHIFT_INTERNAL_IP``` on
 That's it, you can now checkout your application at:
 
 ```
-http://memcached-<namespace>.getup.io
+http://myapp-<namespace>.getup.io
 ```
 
 Please note it's only a first version.
