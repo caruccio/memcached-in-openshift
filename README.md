@@ -1,29 +1,35 @@
-Flask + Memcached on OpenShift
-==================
+Embedded Memcached Cartridge
+============================
 
-This git repository helps you get up and running quickly w/ a Flask + Memcached installation on OpenShift.
+This git repository helps you get up and running quickly w/ a embedded Memcached installation on OpenShift.
 
 
 Running on OpenShift
 ----------------------------
 
-Create an account at http://openshift.redhat.com/
+Create an account at http://getupcloud.com/
 
-Create a python-2.6 application
+Create your application
 
-    rhc app create -a memcached -t python-2.6
+```sh
+rhc app create -a memcached -t python-2.6
+```
 
 Add this upstream memcached repo
 
-    cd memcached
-    git remote add upstream -m master git://github.com/zfdang/memcached-in-openshift.git
-    git pull -s recursive -X theirs upstream master
-    
+```sh
+cd memcached
+git remote add upstream -m master git://github.com/caruccio/openshift-memcached-embedded.git
+git pull -s recursive -X theirs upstream master
+```
 Then push the repo upstream
 
-    git push
+```sh
+git push
+```
 
 That's it, you can now checkout your application at:
 
-    http://memcached-$yournamespace.rhcloud.com
-
+```sh
+http://memcached-$yournamespace.getup.io
+```
