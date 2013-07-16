@@ -20,7 +20,7 @@ Add this upstream memcached repo
 ```
 cd myapp/
 git remote add memcached -m master git://github.com/caruccio/openshift-memcached-embedded.git
-git pull -s recursive -X theirs upstream master
+git pull -s recursive -X theirs memcached master
 ```
 
 Then push the repo upstream
