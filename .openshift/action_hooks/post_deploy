@@ -2,11 +2,19 @@
 # This is a simple post deploy hook executed after your application 
 # is deployed and started.  This script gets executed directly, so 
 # it could be python, php, ruby, etc.
+
 MEMCACHED_BINARY=/usr/bin/memcached
+PIDFILE=$OPENSHIFT_DATA_DIR/memcached.pid
+MEMCACHED_PORT=22322 # Listening port
+MEMCACHED_SIZE=64    # Reserved size in MB
 
 if [ -x $MEMCACHED_BINARY ]; then
-	killall memcached
-	$MEMCACHED_BINARY -l $OPENSHIFT_INTERNAL_IP -p 22322 -m 64 -d 
+	if [ -r "$PIDFILE" ]; then
+		pid=`cat $PIDFILE`
+		[ -z "$pid" ] || kill $pid
+	fi
+	rm -f $PIDFILE
+	$MEMCACHED_BINARY -d -l $OPENSHIFT_INTERNAL_IP -p $MEMCACHED_PORT -m $MEMCACHED_SIZE -P $PIDFILE
 	echo "${MEMCACHED_BINARY} started!"
 else
 	echo "============================================"
