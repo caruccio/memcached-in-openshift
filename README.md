@@ -30,8 +30,10 @@ git push
 ```
 
 Note that on a scallable app, each gear has it's own memcached instance.
-To connect to local gear's memcached use env var ```$OPENSHIFT_INTERNAL_IP``` on port 22322.
-It is configured to use 64 MB.
+
+- To connect to local gear's memcached use env var `$OPENSHIFT_INTERNAL_IP`, port `22322`.
+- It is configured to use 64 MB.
+
 If you want to change any memcahed parameters, please edit ```.openshift/action_hooks/post_deploy```.
 
 That's it, you can now checkout your application at:
